@@ -1,0 +1,195 @@
+# ===========================================================================
+# Multilingual file for the TOS 7 Docker application "nzbgetdocker".
+# File name MUST be: <appid>.lang.  23-language superset (14 required by TOS).
+# The App Center picks the text matching the user's device language;
+# untranslated nodes fall back to English, which the official guide allows.
+# Fields: name (app title), auth (upstream author), descript (up to 512
+# chars), release_note, important (up to 512 chars).
+# Translations come from tosapp.json "translations"; run
+#   tosdocker lang <app>          to re-render this file
+#   tosdocker translate <app>     to see what still needs translating
+# ===========================================================================
+[en-us]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[zh-cn]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet 是用 C++ 写的轻量 Usenet 下载器：下载 NZB、用 PAR2 校验修复、自动解压，并提供可管理的网页队列；内存与 CPU 占用很低，适合 NAS。本应用以非 root 容器运行 LinuxServer.io 的镜像，配置、队列与下载都保存在应用数据目录中。"
+release_note = "1. 首次发布：来自 LinuxServer.io Docker Hub 镜像的 NZBGet 26.3，以非 root 容器运行；配置、队列与下载保存在应用数据目录。"
+important    = "需要 DockerEngine（缺失时应用中心会提示安装）。镜像安装时从 Docker Hub 拉取，无法直连请先配置镜像加速。打开后填写 Usenet 服务器（可选索引站或 *arr 集成）。默认没有网页登录密码——请设置 ControlUsername / ControlPassword，或只在局域网内使用。配置、队列与下载在应用数据目录，卸载并删除数据前请先备份。TOS 的 Docker 应用访问不到共享文件夹：下载文件留在 DockerAppData/nzbgetdocker/downloads，除非你自行编辑 docker-compose.yml。"
+
+[zh-hk]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet 是用 C++ 寫的輕量 Usenet 下載器：下載 NZB、用 PAR2 校驗修復、自動解壓，並提供可管理的網頁佇列；記憶體與 CPU 佔用很低，適合 NAS。本應用以非 root 容器執行 LinuxServer.io 的映像，設定、佇列與下載都保存在應用資料目錄中。"
+release_note = "1. 首次發佈：來自 LinuxServer.io Docker Hub 映像的 NZBGet 26.3，以非 root 容器執行；設定、佇列與下載保存在應用資料目錄。"
+important    = "需要 DockerEngine（缺少時應用中心會提示安裝）。映像安裝時從 Docker Hub 下載，無法直連請先設定映像加速。開啟後填寫 Usenet 伺服器（可選索引站或 *arr 整合）。預設沒有網頁登入密碼——請設定 ControlUsername / ControlPassword，或只在區域網路內使用。設定、佇列與下載在應用資料目錄，解除安裝並刪除資料前請先備份。TOS 的 Docker 應用存取不到共享資料夾：下載檔案留在 DockerAppData/nzbgetdocker/downloads，除非你自行編輯 docker-compose.yml。"
+
+[fr-fr]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[de-de]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[it-it]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[es-es]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[hu-hu]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[ja-jp]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[ko-kr]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[pl-pl]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[ru-ru]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[tr-tr]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[pt-pt]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[ar-sa]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[cs-cz]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[he-il]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[id-id]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[nb-no]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[nl-nl]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[sv-se]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[th-th]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+
+[vi-vn]
+name         = "NZBGet"
+auth         = "NZBGet"
+version      = "@@VERSION@@"
+descript     = "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder."
+release_note = "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads."
+

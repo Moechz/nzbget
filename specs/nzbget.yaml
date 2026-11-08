@@ -1,0 +1,127 @@
+app_id: nzbgetdocker
+title: NZBGet
+image: linuxserver/nzbget:26.3.20261106
+repo_name: nzbget
+mode: wrapper
+entrypoint_file: src/entrypoint.sh
+wrapper_note: 'the upstream image boots with the s6-overlay v3 init, whose service manager
+
+  runs as root; with user "1000:1000" nothing starts and port 6789 stays closed.
+
+  src/entrypoint.sh performs the same first-run setup as the image''s init
+
+  (copy the default nzbget.conf, drop a stale lock) and runs the same binary the
+
+  s6 service runs, directly as the unprivileged container user.
+
+  '
+wrapper_note_readme: '- **Entrypoint wrapper** (not a privilege shim): the s6 service manager of the image
+  needs root, so `src/entrypoint.sh` seeds the default `nzbget.conf` and starts NZBGet directly as the
+  unprivileged container user.'
+user_mode_text: 上游镜像以 s6 管理服务且需要 root，入口包装改为直接以 uid 1000 运行 NZBGet
+user_mode_cons: "- 上游镜像用 s6-overlay v3 管理服务，`user: \"1000:1000\"` 时 s6 无法启动 nzbget，\n  容器 Up 但 6789 无人监听。因此\
+  \ `src/entrypoint.sh` 复刻镜像 init 的首次初始化，\n  再以容器用户执行镜像自带的 `/app/nzbget/nzbget`。\n- NZBGet 自身不需要 root：配置、队列、日志都在\
+  \ /config 卷内，实测非 root 下网页正常。\n"
+container_port: 6789
+platform: x86_64
+platforms:
+- x86_64
+- aarch64
+category:
+- Download
+user: 1000:1000
+volumes:
+- host: /Volume1/DockerAppData/nzbgetdocker/config
+  container: /config
+- host: /Volume1/DockerAppData/nzbgetdocker/downloads
+  container: /downloads
+env:
+  TZ: Asia/Shanghai
+healthcheck:
+- CMD-SHELL
+- curl -s -o /dev/null http://127.0.0.1:6789/ || exit 1
+healthcheck_interval: 30s
+healthcheck_timeout: 10s
+healthcheck_retries: 5
+healthcheck_start_period: 60s
+healthcheck_note: 探测首页 `/`，NZBGet 能应答即健康（首次启动生成 nzbget.conf，60s 宽限）。
+auth: NZBGet
+upstream_url: https://github.com/nzbgetcom/nzbget
+upstream_license: GPL-2.0
+license: GPL-2.0
+official: https://github.com/nzbgetcom/nzbget
+help: https://github.com/Moechz/nzbget/issues
+upstream_version: '26.3'
+version: 26.3-1
+descript: NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and
+  repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for
+  small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker
+  image as a non-root container and keeps the configuration, queue and downloads in the application data
+  folder.
+important: 'Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable.
+  Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword
+  before exposing the port. Configuration, queue and downloads live in the application data folder; back
+  it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads
+  stay under DockerAppData/nzbgetdocker/downloads.'
+release_note: '1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root
+  container. Configuration, queue and downloads are kept in the application data folder.'
+data_notes: '`config/` holds `nzbget.conf` (servers, paths, categories, control login), the queue database,
+  `queue/`, `tmp/` and the logs; `downloads/` receives the finished files. Copying the `nzbgetdocker`
+  folder is a complete backup.'
+design_notes:
+- '**Non-root by construction.** The s6 service manager of the image needs root, so the wrapper seeds
+  the default config and starts the NZBGet binary directly as `1000:1000`; verified on real hardware.'
+- '**Fixed image tag `26.3.20261106`** (NZBGet publishes dated builds), Docker Hub only, no `privileged`,
+  no `network_mode: host`, no `cap_add`, no Docker socket.'
+- '**Health check** on the UI (`GET /` on port 6789) with a 60 s start period.'
+limitations:
+- 'NZBGet has no default web login: anyone on your LAN can open it. Set ControlUsername and ControlPassword
+  in `nzbget.conf` (or Settings → Security) before exposing the port.'
+- 'TOS Docker applications cannot mount shared folders: downloads stay in `/Volume1/DockerAppData/nzbgetdocker/downloads/`.
+  Move them out with File Manager, or edit `/Volume1/@apps/DockerEngine/application/nzbgetdocker/docker-compose.yml`
+  after installation.'
+- The UI is served over plain HTTP on the LAN. Do not expose the published port to the internet without
+  a TLS reverse proxy.
+runtime_files:
+- path: config/nzbget.conf
+  purpose: all settings - Usenet servers, folders, categories, control login
+  created: first start
+  growth: static, rewritten on every settings change
+  lifecycle: never overwritten after the first run; it is the whole configuration
+- path: config/queue
+  purpose: download queue and history database
+  created: first start
+  growth: grows with the queue and history
+  lifecycle: managed by NZBGet; safe to prune from the UI
+- path: config/tmp
+  purpose: temporary files while downloading and unpacking
+  created: first start
+  growth: bounded by the active downloads
+  lifecycle: safe to delete when NZBGet is stopped
+- path: downloads
+  purpose: finished downloads
+  created: first start (empty)
+  growth: grows with every download
+  lifecycle: managed by NZBGet and by you
+translations:
+  zh-cn:
+    descript: NZBGet 是用 C++ 写的轻量 Usenet 下载器：下载 NZB、用 PAR2 校验修复、自动解压，并提供可管理的网页队列；内存与 CPU 占用很低，适合 NAS。本应用以非
+      root 容器运行 LinuxServer.io 的镜像，配置、队列与下载都保存在应用数据目录中。
+    important: 需要 DockerEngine（缺失时应用中心会提示安装）。镜像安装时从 Docker Hub 拉取，无法直连请先配置镜像加速。打开后填写 Usenet 服务器（可选索引站或
+      *arr 集成）。默认没有网页登录密码——请设置 ControlUsername / ControlPassword，或只在局域网内使用。配置、队列与下载在应用数据目录，卸载并删除数据前请先备份。TOS
+      的 Docker 应用访问不到共享文件夹：下载文件留在 DockerAppData/nzbgetdocker/downloads，除非你自行编辑 docker-compose.yml。
+    release_note: 1. 首次发布：来自 LinuxServer.io Docker Hub 镜像的 NZBGet 26.3，以非 root 容器运行；配置、队列与下载保存在应用数据目录。
+  zh-hk:
+    descript: NZBGet 是用 C++ 寫的輕量 Usenet 下載器：下載 NZB、用 PAR2 校驗修復、自動解壓，並提供可管理的網頁佇列；記憶體與 CPU 佔用很低，適合 NAS。本應用以非
+      root 容器執行 LinuxServer.io 的映像，設定、佇列與下載都保存在應用資料目錄中。
+    important: 需要 DockerEngine（缺少時應用中心會提示安裝）。映像安裝時從 Docker Hub 下載，無法直連請先設定映像加速。開啟後填寫 Usenet 伺服器（可選索引站或
+      *arr 整合）。預設沒有網頁登入密碼——請設定 ControlUsername / ControlPassword，或只在區域網路內使用。設定、佇列與下載在應用資料目錄，解除安裝並刪除資料前請先備份。TOS
+      的 Docker 應用存取不到共享資料夾：下載檔案留在 DockerAppData/nzbgetdocker/downloads，除非你自行編輯 docker-compose.yml。
+    release_note: 1. 首次發佈：來自 LinuxServer.io Docker Hub 映像的 NZBGet 26.3，以非 root 容器執行；設定、佇列與下載保存在應用資料目錄。
+publisher: Moechz
+compose_project: nzbgetdocker
+github_repo: nzbget
+release_tag_prefix: v
+docker_socket: false
+group_add: []
+host_port: 8017
