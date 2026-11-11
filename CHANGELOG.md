@@ -2,6 +2,11 @@
 
 All notable user-visible changes to the NZBGet TOS application package.
 
+## 26.3-2 — 2026-11-12
+
+### Changed
+- Icon: replaced the letter monogram with a functional vector mark that describes what the app does (the upstream project does not publish a compliant SVG).
+
 ## 26.3-1 — 2026-11-09
 
 ### Added

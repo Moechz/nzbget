@@ -48,7 +48,7 @@
   "official": "https://github.com/nzbgetcom/nzbget",
   "help": "https://github.com/Moechz/nzbget/issues",
   "upstream_version": "26.3",
-  "version": "26.3-1",
+  "version": "26.3-2",
   "descript": "NZBGet is a lightweight Usenet downloader written in C++. It downloads NZB files, verifies and repairs them with PAR2, unpacks the result and keeps a queue you can manage from a web UI - ideal for small NAS boxes because it needs very little memory and CPU. This package runs the LinuxServer.io Docker image as a non-root container and keeps the configuration, queue and downloads in the application data folder.",
   "important": "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open the app and add your Usenet server. The default login has no password - set ControlUsername / ControlPassword before exposing the port. Configuration, queue and downloads live in the application data folder; back it up before uninstalling with data removal. TOS Docker applications cannot see shared folders: downloads stay under DockerAppData/nzbgetdocker/downloads.",
   "release_note": "1. First release: NZBGet 26.3 from the LinuxServer.io Docker Hub image, running as a non-root container. Configuration, queue and downloads are kept in the application data folder.",
