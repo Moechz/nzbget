@@ -22,8 +22,8 @@
 #           src/entrypoint.sh performs the same first-run setup as the image's init
 #           (copy the default nzbget.conf, drop a stale lock) and runs the same binary the
 #           s6 service runs, directly as the unprivileged container user. It also drops
-#           the credentials the image ships in its template (ControlPassword=tegbzn6789
-#           and the dummy news-server user/pass), generates a random control password on
+#           the well-known credentials the image ships in its template (control password
+#           and dummy news-server account), generates a random control password on
 #           first start and keeps nzbget.conf at mode 0600.
 # Escaping: docker compose interpolates ${VAR}/$VAR in compose files, so any
 #           '$' meant for the shell is written '$$'.

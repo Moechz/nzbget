@@ -57,9 +57,10 @@ The upstream image starts its own s6-overlay v3 supervisor as root; that cannot
 run inside a non-root container, so `src/entrypoint.sh` performs the same
 first-run setup (seed `nzbget.conf`, drop a stale lock) and starts
 `/app/nzbget/nzbget` directly as uid 1000. It also removes the credentials the
-image ships in its template — `ControlPassword=tegbzn6789` and the dummy news
-server `user`/`pass` on `my.newsserver.com` — and generates a random control
-password instead.
+image ships in its template (the well-known default control password and the
+dummy news-server account) and generates a random control password instead. The
+default values are read from the image's own template, so neither the package
+nor this repository contains a credential string.
 
 ## First start and the web login
 
@@ -154,8 +155,8 @@ component list: **[NOTICE.md](NOTICE.md)**.
 
 ```bash
 scripts/build.sh                     # current version from tosapp.json, x86_64
-scripts/build.sh 26.3-6 aarch64      # one architecture, explicit version
-scripts/build-dual.sh 26.3-6         # both architectures + official check
+scripts/build.sh 26.3-7 aarch64      # one architecture, explicit version
+scripts/build-dual.sh 26.3-7         # both architectures + official check
 ```
 
 `build.sh` stages the four files, substitutes `@@VERSION@@`/`@@PLATFORM@@`,
@@ -189,11 +190,11 @@ everything down. It never touches production data or the production port.
 ## Store submission
 
 1. Public GitHub repo (packaging code + docs).
-2. Release tag `v26.3-6` with assets `nzbgetdocker_x86_64.tar.gz` +
+2. Release tag `v26.3-7` with assets `nzbgetdocker_x86_64.tar.gz` +
    `.sha256` and `nzbgetdocker_aarch64.tar.gz` + `.sha256`.
 3. Developer platform: app id `nzbgetdocker`, package type Docker, repository
    URL, one App record per architecture.
-4. Version `26.3-6` for `x86_64` and for `aarch64`, then review.
+4. Version `26.3-7` for `x86_64` and for `aarch64`, then review.
 
 ## Limitations
 

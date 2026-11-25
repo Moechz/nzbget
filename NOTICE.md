@@ -1,6 +1,6 @@
 # Notices and attributions — NZBGet for TerraMaster TOS 7
 
-**Package:** `nzbgetdocker` 26.3-6
+**Package:** `nzbgetdocker` 26.3-7
 **Upstream project:** NZBGet — <https://github.com/nzbgetcom/nzbget>
 **Container image:** `linuxserver/nzbget:26.3.20261120` (Docker Hub, used unmodified)
 

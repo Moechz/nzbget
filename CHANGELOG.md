@@ -2,7 +2,7 @@
 
 All notable user-visible changes to the NZBGet TOS application package.
 
-## 26.3-6 — 2026-11-25
+## 26.3-7 — 2026-11-25
 
 Remediation of the App Center listing review of 26.3-5 (x86_64). One version
 covers both architectures; port 8017 is unchanged.
@@ -15,12 +15,13 @@ covers both architectures; port 8017 is unchanged.
   multi-arch index digest is recorded in `NOTICE.md`.
 
 ### Credentials (T2)
-- The image's default configuration ships `ControlPassword=tegbzn6789` and a
-  dummy news server (`my.newsserver.com`, user `user`, password `pass`). The
-  wrapper now removes both: the dummy server is deactivated and cleared, and a
-  random 32-hex-character control password is generated on first start (or once
-  on upgrade from a build that still used the shipped default) and printed in
-  the container log. `tegbzn6789` is rejected by the running instance.
+- The image's default configuration ships a well-known control password and a
+  dummy news server (placeholder host, account `user`/`pass`). The wrapper now
+  reads those values from the image's own template and removes both: the dummy
+  server is deactivated and cleared, and a random 32-hex-character control
+  password is generated on first start (or once on upgrade from a build that
+  still used the shipped default) and printed in the container log. The shipped
+  default is rejected by the running instance.
 - `nzbget.conf` is forced to mode 0600 inside a 0700 data directory (it holds
   the news-server and SMTP passwords).
 
@@ -52,12 +53,18 @@ covers both architectures; port 8017 is unchanged.
   its files are documented for a complete uninstall (Docker packages have no
   uninstall hook).
 
+### Packaging
+- The default password literal is no longer repeated in the packaging comments;
+  the wrapper reads it from the image template. 26.3-6 was an interim submission
+  of these same changes and was withdrawn in favour of this build (only the
+  comment text and the version differ).
+
 ### Notes
 - 26.3-3/4/5 were re-submission builds of the same four files; this entry
   supersedes them.
 - Upgrading keeps `/Volume1/DockerAppData/nzbgetdocker/` (settings, queue,
   downloads). The first start after the upgrade generates the new control
-  password if the old build's `tegbzn6789` default is still in place; read it
+  password if the old build's shipped-default password is still in place; read it
   with `docker logs nzbgetdocker | grep -A3 'web login generated'`.
 
 ## 26.3-2 — 2026-11-12

@@ -1,6 +1,6 @@
 # Privacy Policy — NZBGet for TerraMaster TOS 7
 
-**Package:** `nzbgetdocker` · **Version:** 26.3-6 · **Effective:** 2026-11-25
+**Package:** `nzbgetdocker` · **Version:** 26.3-7 · **Effective:** 2026-11-25
 **Upstream software:** NZBGet 26.3 (<https://github.com/nzbgetcom/nzbget>, GPL-2.0)
 **Container image:** `linuxserver/nzbget:26.3.20261120` (Docker Hub, used unmodified)
 
@@ -59,9 +59,8 @@ described in section 6.
 
 The package contains **no telemetry, analytics, advertising, crash reporting or
 account system**, and it does not contact the packager. NZBGet starts with no
-active news server: the placeholder server of the upstream template
-(`my.newsserver.com` with `user`/`pass`) is removed on first start, so a fresh
-install makes no download-related request at all. The table lists every
+active news server: the placeholder server of the upstream template is removed
+on first start, so a fresh install makes no download-related request at all. The table lists every
 outbound path; only row 6 happens without you configuring something.
 
 | # | Endpoint / service | What is sent | Destination / region | When / default |
@@ -96,8 +95,9 @@ credentials you type, and clearing them is a browser setting. Requests from
 NZBGet's `AuthorizedIP` default; all other clients must authenticate.
 
 The control password is **generated randomly on first start** and written to
-`nzbget.conf`; the well-known default of the upstream image (`tegbzn6789`) can
-no longer be used. The generated password is printed once in the container log
+`nzbget.conf`; the well-known default of the upstream image can no longer be
+used (the wrapper compares the stored value with the value in the image's own
+template and replaces it; the string is not repeated in this package). The generated password is printed once in the container log
 (`docker logs nzbgetdocker`) so that you can retrieve it, and you can change it
 under Settings → Security.
 
