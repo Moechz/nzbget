@@ -99,6 +99,11 @@ for s in secs:
     for key in ("name", "auth", "version", "descript", "release_note", "important"):
         mm = re.search(rf'{key}\s*=\s*"(.+)"', body)
         chk(mm is not None and mm.group(1).strip(), f"[{s}] {key} empty or missing")
+        # The store parser treats ';' as an INI comment: a value containing one
+        # is truncated (and may gain a stray quote) in the listing.
+        chk(mm is None or ";" not in mm.group(1),
+            f"[{s}] {key} must not contain an ASCII semicolon (the store parser "
+            "treats it as an INI comment); use the full-width '；' or reword")
     d = re.search(r'descript\s*=\s*"(.+)"', body)
     chk(d is None or len(d.group(1)) <= 512, f"[{s}] descript longer than 512 chars")
     i = re.search(r'important\s*=\s*"(.+)"', body)
@@ -141,6 +146,14 @@ chk(re.search(r"ghcr\.io|quay\.io|lscr\.io|registry\.", comp_nc) is None,
     "images must come from Docker Hub (bare names)")
 chk(":latest" not in comp_nc, "image must use a fixed tag, never :latest")
 chk(f"image: {spec['image']}" in comp_nc, f"compose must pull exactly {spec['image']}")
+# T2: the image's template ships a well-known control password and a dummy
+# news-server account. The package must never carry them: the wrapper removes
+# them at first start and compares against the image's own template.
+chk("tegbzn6789" not in comp_nc,
+    "compose (including the embedded entrypoint) must not contain the image's "
+    "default control password - read it from the image template instead")
+chk(not re.search(r"(?im)^\s*(Control|Restricted|Add)Password\s*=\s*\S", comp_nc),
+    "compose must not set a control password literally; generate it at runtime")
 upstream = spec.get("upstream_version") or ver.split("-")[0]
 chk(re.search(rf"image:\s*{re.escape(spec['image'])}\s*$", comp_nc, re.M) is not None,
     "compose image must match tosapp.json exactly")

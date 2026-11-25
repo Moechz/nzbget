@@ -1,8 +1,9 @@
 # ===========================================================================
 # NZBGet for TerraMaster TOS 7 (Docker application)
 # ===========================================================================
-# Upstream image : linuxserver/nzbget:26.3.20261106 (Docker Hub, used unmodified)
-#                  -> https://github.com/nzbgetcom/nzbget
+# Upstream image : linuxserver/nzbget:26.3.20261120 (Docker Hub, used unmodified)
+#                  -> https://github.com/nzbgetcom/nzbget  (GPL-2.0; NZBGet 26.3)
+#                  -> multi-arch index sha256:217c7028b9d671b34bfb60adcd09f3d6d24761226ec7025b3438eaa55fc0728e
 #
 # Ports   : host 8017 -> container 6789. The host port is in the
 #           TOS-recommended 8000-19999 range and is not one of the reserved
@@ -12,14 +13,18 @@
 #           deliberately NOT used: the platform does not expand it.
 # TOS rules honoured: Docker Hub image with a fixed tag (never ':latest'),
 #           container_name == application id, restart: unless-stopped,
-#           non-root user, no privileged mode, no network_mode: host, no
-#           cap_add, explicit TZ, a healthcheck on the only service, and
-#           x-app-meta as the last block.
+#           non-root user, dropped capabilities, no-new-privileges,
+#           no privileged mode, no network_mode: host, no cap_add, explicit
+#           TZ, a healthcheck on the only service, and x-app-meta as the last
+#           block.
 # Wrapper : the upstream image boots with the s6-overlay v3 init, whose service manager
 #           runs as root; with user "1000:1000" nothing starts and port 6789 stays closed.
 #           src/entrypoint.sh performs the same first-run setup as the image's init
 #           (copy the default nzbget.conf, drop a stale lock) and runs the same binary the
-#           s6 service runs, directly as the unprivileged container user.
+#           s6 service runs, directly as the unprivileged container user. It also drops
+#           the credentials the image ships in its template (ControlPassword=tegbzn6789
+#           and the dummy news-server user/pass), generates a random control password on
+#           first start and keeps nzbget.conf at mode 0600.
 # Escaping: docker compose interpolates ${VAR}/$VAR in compose files, so any
 #           '$' meant for the shell is written '$$'.
 #
@@ -31,10 +36,14 @@
 
 services:
   nzbgetdocker:
-    image: linuxserver/nzbget:26.3.20261106
+    image: linuxserver/nzbget:26.3.20261120
     container_name: nzbgetdocker
     restart: unless-stopped
     user: "1000:1000"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |

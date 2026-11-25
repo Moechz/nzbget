@@ -23,12 +23,18 @@ SOFTWARE.
 -------------------------------------------------------------------------------
 Third-party notices
 
-NZBGet is Copyright its upstream authors and is distributed under
-GPL-2.0. This repository only packages the
-official container image `linuxserver/nzbget:26.3.20261106` from Docker Hub unmodified; no
-upstream source code is distributed here. All trademarks belong to their owners.
-This is an independent community package, not affiliated with the upstream
-project or TerraMaster.
+NZBGet is Copyright (C) 2005-2026 the NZBGet authors and is distributed under
+the GNU General Public License version 2 (GPL-2.0, see the upstream COPYING at
+https://github.com/nzbgetcom/nzbget/blob/v26.3/COPYING). This repository only
+packages the official multi-architecture container image
+`linuxserver/nzbget:26.3.20261120` from Docker Hub unmodified (index digest
+sha256:217c7028b9d671b34bfb60adcd09f3d6d24761226ec7025b3438eaa55fc0728e); no
+upstream source code or binary is redistributed here. The image bundles Alpine
+Linux, 7-Zip, UnRAR, OpenSSL, Python, Apprise and the s6-overlay init under
+their own licences. NZBGet, LinuxServer.io, TerraMaster and Docker are
+trademarks of their respective owners. This is an independent community
+package, not affiliated with the upstream project, LinuxServer.io or
+TerraMaster. Full component list and attributions: NOTICE.md.
 
 TOSAppSelfTestingTool is an official TerraMaster utility, redistributed here
 unmodified for local package validation.
